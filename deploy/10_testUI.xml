@@ -1,0 +1,27 @@
+<qbean class="org.jpos.q2.ui.UI" name="HelloUI" logger="Q2">
+<ui width="600" height="400"
+full-screen="false" undecorated="false" close="true">
+<caption>jPOS UI Test</caption>
+<menubar id="MAIN">
+<menu id="File" accesskey="f">
+<menuitem id="Quit" accesskey="Q" action="exit" />
+</menu>
+</menubar>
+<components>
+<border-layout>
+<north>
+<label font="helvetica-normal-22">Hello jPOS UI</label>
+</north>
+<center>
+<html editable="false" follow-links="true" scrollable="true">
+http://jpos.org
+</html>
+</center>
+<south>
+<label font="arial-italic-8">Copyright (c) 2004 - jPOS.org</label>
+</south>
+</border-layout>
+</components>
+</ui>
+<object class="org.jpos.ui.action.Exit" id="exit" />
+</qbean>
