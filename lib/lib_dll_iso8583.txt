@@ -1,0 +1,43 @@
+ISO 8583 Decoder User-Defined Function 
+ 
+This application will enable MySQL to handle ISO8583 message fields and retrieves the data
+elements.
+ 
+Installing ISO 8583 UDF 
+ 
+Install Manually:
+1. Copy iso8583_UDF.dll into \bin folder of your Installed MySQL Server
+2. Logon to MySQL as Root and run this SQL Script: 
+DROP FUNCTION IF EXISTS ISO8583; 
+CREATE FUNCTION ISO8583 RETURNS STRING SONAME 'iso8583_UDF.dll'; 
+3. The ISO 8583 Decoder UDF is installed and ready to use.
+
+Using Installer: 
+1. Run Installer in the server where the MySQL Server reside.
+2. Input password for root, click install. 
+Function Syntax  
+
+ISO8583( ISOMessage, BitNumber [, ISOVersion]) 
+
+ISOMessage This argument holds the input for ISO 8583 function. The input can be a 
+
+ 
+string format or you can directly put the field’s name contain ISO 8583
+message.
+
+Example: 
+SELECT ISO8583("0800822000000000000004000000000000000627031852015537301",7);
+SELECT ISO8583(ISO_Field,2) FROM TestTable; 
+ 
+BitNumber This argument holds the input for data element number to be extracted
+from message. The valid value for this argument is: 
+ 
+0 Function will return Message Type of the ISO8583 message
+1 Function will return Bitmap of the ISO8583 message 
+2 to 128 Function will return ISO8583 Data Element 
+ISOVersion This is optional argument to specify ISO 8583 format version. Without this
+argument, the function will use ISO 8583-1:1987 version for processing the
+message. The valid value for this argument is: 
+ 
+1 ISO 8583-1:1987 version (Default)
+2 ISO 8583-2:1993 version 
